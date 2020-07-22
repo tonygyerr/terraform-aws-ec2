@@ -2,7 +2,7 @@
 
 all: help
 
-export AWS_DEFAULT_PROFILE := iesawsna-sandbox
+export AWS_PROFILE := iesawsna-sandbox
 export ENV := dev
 export BACKEND_CONFIG := ../backend-config/${ENV}.tfvars
 export TFVARS := ../env-config/${ENV}.tfvars
@@ -70,34 +70,34 @@ destroy:		## Destroy the infrastructure.
 .PHONY: destroy
 
 destroy-backend: ## Destroy S3 bucket and DynamoDB table
-	@if ! aws --profile $(AWS_DEFAULT_PROFILE) dynamodb delete-table \
+	@if ! aws --profile $(AWS_PROFILE) dynamodb delete-table \
 		--region $(REGION) \
 		--table-name $(DYNAMODB_TABLE) > /dev/null 2>&1 ; then \
 			echo "$(BOLD)$(RED)Unable to delete DynamoDB table $(DYNAMODB_TABLE)$(RESET)"; \
 	 else
 		echo "$(BOLD)$(RED)DynamoDB table $(DYNAMODB_TABLE) does not exist.$(RESET)"; \
 	 fi
-	@if ! aws --profile $(AWS_DEFAULT_PROFILE) s3api delete-objects \
+	@if ! aws --profile $(AWS_PROFILE) s3api delete-objects \
 		--region $(REGION) \
 		--bucket $(S3_BUCKET) \
-		--delete "$$(aws --profile $(AWS_DEFAULT_PROFILE) s3api list-object-versions \
+		--delete "$$(aws --profile $(AWS_PROFILE) s3api list-object-versions \
 						--region $(REGION) \
 						--bucket $(S3_BUCKET) \
 						--output=json \
 						--query='{Objects: Versions[].{Key:Key,VersionId:VersionId}}')" > /dev/null 2>&1 ; then \
 			echo "$(BOLD)$(RED)Unable to delete objects in S3 bucket $(S3_BUCKET)$(RESET)"; \
 	 fi
-	@if ! aws --profile $(AWS_DEFAULT_PROFILE) s3api delete-objects \
+	@if ! aws --profile $(AWS_PROFILE) s3api delete-objects \
 		--region $(REGION) \
 		--bucket $(S3_BUCKET) \
-		--delete "$$(aws --profile $(AWS_DEFAULT_PROFILE) s3api list-object-versions \
+		--delete "$$(aws --profile $(AWS_PROFILE) s3api list-object-versions \
 						--region $(REGION) \
 						--bucket $(S3_BUCKET) \
 						--output=json \
 						--query='{Objects: DeleteMarkers[].{Key:Key,VersionId:VersionId}}')" > /dev/null 2>&1 ; then \
 			echo "$(BOLD)$(RED)Unable to delete markers in S3 bucket $(S3_BUCKET)$(RESET)"; \
 	 fi
-	@if ! aws --profile $(AWS_DEFAULT_PROFILE) s3api delete-bucket \
+	@if ! aws --profile $(AWS_PROFILE) s3api delete-bucket \
 		--region $(REGION) \
 		--bucket $(S3_BUCKET) > /dev/null 2>&1 ; then \
 			echo "$(BOLD)$(RED)Unable to delete S3 bucket $(S3_BUCKET) itself$(RESET)"; \

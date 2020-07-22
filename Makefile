@@ -2,7 +2,7 @@
 
 all: help
 
-export AWS_DEFAULT_PROFILE := iesawsna-sandbox
+export AWS_PROFILE := iesawsna-sandbox
 export ACN_ENTERPRISE_ID := ekow.gyepi-garbrah
 export ACN_EMAIL_ADDRESS := ekow.gyepi-garbrah@accenture.com
 export ENV := dev
@@ -78,52 +78,57 @@ fmt:			## Get the Terraform Networking modules.
 get:		## Get the Terraform App modules.
 	@echo "[INFO] Geting Terraform modules"
 	${MAKE} get -C examples/
-.PHONY: get-app
+.PHONY: get
 
 init:		## Get the Terraform App modules.
 	@echo "[INFO] Geting Terraform modules"
 	${MAKE} init -C examples/
-.PHONY: plan-init
+.PHONY: init
 
-plan:		## Get the Terraform App modules.
+plan:		## Run Plan Terraform App modules.
 	@echo "[INFO] Geting Terraform modules"
 	${MAKE} plan -C examples/
-.PHONY: plan-app
+.PHONY: plan
 
-apply:		## Get the Terraform App modules.
+apply:		## Apply Terraform App modules.
 	@echo "[INFO] Geting Terraform modules"
 	${MAKE} apply -C examples/
-.PHONY: apply-app
+.PHONY: apply
+
+destroy:		## Destroy Terraform App modules.
+	@echo "[INFO] Geting Terraform modules"
+	${MAKE} destroy -C examples/
+.PHONY: destroy
 
 destroy-backend:	## Destroy S3 bucket and DynamoDB table
-	@if ! aws --profile $(AWS_DEFAULT_PROFILE) dynamodb delete-table \
+	@if ! aws --profile $(AWS_PROFILE) dynamodb delete-table \
 		--region $(REGION) \
 		--table-name $(DYNAMODB_TABLE) > /dev/null 2>&1 ; then \
 			echo "$(BOLD)$(RED)Unable to delete DynamoDB table $(DYNAMODB_TABLE)$(RESET)"; \
 	 else
 		echo "$(BOLD)$(RED)DynamoDB table $(DYNAMODB_TABLE) does not exist.$(RESET)"; \
 	 fi
-	@if ! aws --profile $(AWS_DEFAULT_PROFILE) s3api delete-objects \
+	@if ! aws --profile $(AWS_PROFILE) s3api delete-objects \
 		--region $(REGION) \
 		--bucket $(S3_BUCKET) \
-		--delete "$$(aws --profile $(AWS_DEFAULT_PROFILE) s3api list-object-versions \
+		--delete "$$(aws --profile $(AWS_PROFILE) s3api list-object-versions \
 						--region $(REGION) \
 						--bucket $(S3_BUCKET) \
 						--output=json \
 						--query='{Objects: Versions[].{Key:Key,VersionId:VersionId}}')" > /dev/null 2>&1 ; then \
 			echo "$(BOLD)$(RED)Unable to delete objects in S3 bucket $(S3_BUCKET)$(RESET)"; \
 	 fi
-	@if ! aws --profile $(AWS_DEFAULT_PROFILE) s3api delete-objects \
+	@if ! aws --profile $(AWS_PROFILE) s3api delete-objects \
 		--region $(REGION) \
 		--bucket $(S3_BUCKET) \
-		--delete "$$(aws --profile $(AWS_DEFAULT_PROFILE) s3api list-object-versions \
+		--delete "$$(aws --profile $(AWS_PROFILE) s3api list-object-versions \
 						--region $(REGION) \
 						--bucket $(S3_BUCKET) \
 						--output=json \
 						--query='{Objects: DeleteMarkers[].{Key:Key,VersionId:VersionId}}')" > /dev/null 2>&1 ; then \
 			echo "$(BOLD)$(RED)Unable to delete markers in S3 bucket $(S3_BUCKET)$(RESET)"; \
 	 fi
-	@if ! aws --profile $(AWS_DEFAULT_PROFILE) s3api delete-bucket \
+	@if ! aws --profile $(AWS_PROFILE) s3api delete-bucket \
 		--region $(REGION) \
 		--bucket $(S3_BUCKET) > /dev/null 2>&1 ; then \
 			echo "$(BOLD)$(RED)Unable to delete S3 bucket $(S3_BUCKET) itself$(RESET)"; \
