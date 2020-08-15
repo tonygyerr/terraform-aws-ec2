@@ -3,7 +3,7 @@
 
 ```hcl
 module "ec2" {
-  source = "git::git@innersource.accenture.com/faecvtm/ec2.git"
+  source = "git::ssh://git@github.com:tonygyerr/terraform-aws-ec2.git"
   ami                         = var.ami
   app_name                    = var.app_name
   aws_key_name                = var.aws_key_name
@@ -23,28 +23,18 @@ module "ec2" {
 - Docker (for using Docker Image of dependencies)
 - Git
 - Terraform
-- vip2adfs2aws, or aaca for authenticating against your AWS account.
 - AWS Key pair for Terraform provisioning.
 - AWS S3 bucket for remote terraform state file (tfstate)
 - AWS Dynamo Database for tfstate table state lock 
 
 ## How to run this Module using Terraform Commands
 ```bash
-vip2adfs2aws aws-auth --user-enterprise-id <accenture user id> --user-email <username.lastname@accenture.com> --user-aws-role-index 0 --aws-region <amazon region>
 cd examples
+terraform get
 terraform init -backend-config ../backend-config/dev.tfvars
 terraform plan -var-file="../env-config/dev.tfvars"
 terraform apply -var-file="../env-config/dev.tfvars" -auto-approve
 terraform destroy -var-file="../env-config/dev.tfvars"
-```
-
-## How to Run this Module using Makefile Process
-```bash
-make auth
-make get
-make init
-make plan
-make apply
 ```
 
 ## Requirements

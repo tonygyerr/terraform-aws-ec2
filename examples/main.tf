@@ -1,5 +1,5 @@
 module "ec2" {
-  source = "git::https://innersource.accenture.com/scm/faecvtm/ec2.git"
+  source = "git::ssh://git@github.com:tonygyerr/terraform-aws-ec2.git"
   ami                         = var.ami
   app_name                    = var.app_name
   aws_key_name                = var.aws_key_name

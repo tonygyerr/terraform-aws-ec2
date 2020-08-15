@@ -4,4 +4,4 @@ Credits
 
 Contributors
 ------------
-"Gyepi-Garbrah, Ekow (Tony) <ekow.gyepi-garbrah@accenture.com>"
+"Gyepi-Garbrah, Ekow (Tony) <a.gyepigarbrah@gmail.com>"

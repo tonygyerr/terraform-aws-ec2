@@ -1,7 +1,7 @@
 #--------------------------------------------------------------
 # general
 #--------------------------------------------------------------	
-app_name                    = "computer-vision"
+app_name                    = "mobile-app"
 aws_key_name                = "jenkins-server"
 network_interface           = "eni-0f26d3202bdc88a38"
 public_subnet_ids           = ["10.0.0.0/24", "10.0.1.0/24"]
@@ -24,8 +24,8 @@ tags = {
   Environment = "dev"
   Name        = "vpc-iac"
   Region      = "us-east-1"
-  Owner       = "aabg-fuse"
-  CostCenter  = "aabg"
+  Owner       = "mobile-app"
+  CostCenter  = "mobile-app"
 }
 
 #--------------------------------------------------------------

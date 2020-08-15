@@ -9,22 +9,6 @@ resource "aws_instance" "this" {
   subnet_id              = var.subnet_id
   source_dest_check      = false
 
-# # e.g. Create subnets in the first two current availability zones
-
-# resource "aws_subnet" "primary" {
-#   availability_zone = data.aws_availability_zones.current.names[0]
-
-#   # ...
-# }
-
-# resource "aws_subnet" "secondary" {
-#   availability_zone = data.aws_availability_zones.current.names[1]
-
-#   # ...
-# }
-#   tags = merge(map("Name", "${var.app_name}-ec2"), merge(var.tags, var.acn_tags))
-# }
-
 resource "aws_ebs_volume" "this" {
   availability_zone = data.aws_availability_zones.current.names[0]
   size              = var.app_vol_size
