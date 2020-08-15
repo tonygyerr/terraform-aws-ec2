@@ -1,5 +1,0 @@
-bucket         = "terraform-state-dev-bucket"
-key            = "dev/terraform/modules/ec2-terraform.tfstate"
-dynamodb_table = "terraform-dev-statelock"
-region         = "us-east-1"
-profile        = "iesawsna-sandbox"
