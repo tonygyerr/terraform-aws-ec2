@@ -1,0 +1,63 @@
+# config
+*.tfvars
+
+# binaries
+.exe
+.rpm
+.gz
+
+# creds
+creds/serviceaccount.json
+
+# environment
+*env.list
+.env
+.venv 
+env.bak 
+venv.bak 
+
+# git files
+.gitignore
+
+# python
+__pycache__
+.installed.cfg
+.manifest.spec
+.pytest_cache
+.python-version
+*.eggs
+*.exe
+build/
+develop-eggs
+dist
+downloads/
+eggs/
+lib64/
+MANIFEST
+sdist/
+var/
+wheel/
+
+# sensative
+*.idea
+
+# aws
+*.pem 
+.pem
+
+
+# plase build
+plz-out
+*.plzconfig*
+*.plzconfig*
+
+# terraform
+*.tfstate*
+*.tfstate.backup
+.terraform.tfstate.lock.info
+*.terraform
+*terraform.d
+
+# vscode
+*.vscode/
+*.DS_Store

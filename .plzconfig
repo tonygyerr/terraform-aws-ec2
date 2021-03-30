@@ -1,0 +1,43 @@
+; Please config file
+; Leaving this file as is is enough to use plz to build your project.
+; Please will stay on whatever version you currently have until you run
+; 'plz update', when it will download the latest available version.
+;
+; Or you can uncomment the following to pin everyone to a particular version;
+; when you change it all users will automatically get updated.
+; [please]
+; version = 14.1.7
+[alias "fed"]
+cmd = run //third_party/aws_fed:federate --
+subcommand = dev
+subcommand = test
+subcommand = prod
+
+[alias "aaca"]
+cmd = run //third_party/aaca:federate --
+subcommand = dev
+subcommand = test
+subcommand = prod
+
+[build]
+path = /usr/bin/python3:/usr/local/bin:usr/bin:/bin:/usr/local/go/bin:/usr/bin/python:/home/jenkins/.pyenv/shims:/home/jenkins/.pyenv/bin:/usr/local/bin/pip
+
+timeout = 7200
+
+[buildconfig]
+aws-profile = <enter aws profile>
+app-instance = none
+account-id = <enter aws account number>
+app-instance = none
+env = dev
+terraform-version = 0.12.18
+tf-warn-output-errors = 1
+tf-switch-dir = /home/jenkins/.terraform.versions
+
+[please]
+version = 14.3.5
+
+[python]
+moduleDir = third_party/python
+UsePyPI = true
+version = 3.8
