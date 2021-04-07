@@ -48,8 +48,8 @@ resource "aws_security_group" "server" {
 
   egress {
     from_port   = 0
-    to_port     = 65535
-    protocol    = -1
+    to_port     = 0 #65535
+    protocol    = -1 
     description = ""
     cidr_blocks = [var.vpc_config.open_cidr]
   }
@@ -58,8 +58,8 @@ resource "aws_security_group" "server" {
 resource "aws_security_group_rule" "server"{
   type = "ingress"
   from_port   = 0 
-  to_port     = 65535 
-  protocol    = "tcp"
+  to_port     = 0
+  protocol    = "-1"
   security_group_id = aws_security_group.server.id
   source_security_group_id = aws_security_group.server.id
 }
