@@ -5,5 +5,5 @@ resource "aws_eip" "this" {
   associate_with_private_ip = aws_instance.this.private_ip
   public_ipv4_pool          = var.public_ipv4_pool
 
-  tags = merge(map("Name", "${var.app_name}-eip"), merge(var.tags, var.acn_tags))
+  tags = merge(map("Name", "${var.app_name}-eip"), merge(var.tags))
 }

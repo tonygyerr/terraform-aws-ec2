@@ -7,6 +7,7 @@ resource "aws_instance" "this" {
   vpc_security_group_ids = [aws_security_group.server.id]
   subnet_id              = var.subnet_id
   source_dest_check      = false
+  tags = merge(map("Name", "${var.app_name}-ec2"), merge(var.tags))
 }
 
 resource "aws_ebs_volume" "this" {
@@ -15,7 +16,7 @@ resource "aws_ebs_volume" "this" {
   type              = var.app_vol_type
   encrypted         = var.app_vol_encryption
   
-  tags = merge(map("Name", "${var.app_name}-vol"), merge(var.tags, var.acn_tags))
+  tags = merge(map("Name", "${var.app_name}-vol"), merge(var.tags))
 }
 
 resource "aws_volume_attachment" "this" {

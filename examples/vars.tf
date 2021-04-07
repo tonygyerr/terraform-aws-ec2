@@ -1,10 +1,3 @@
-variable "acn_tags" {
-  type        = map(string)
-  description = "optional tags"
-
-  default = {}
-}
-
 variable "ami" {
   type = string
 }
