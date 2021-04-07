@@ -46,13 +46,13 @@ resource "aws_security_group" "server" {
     cidr_blocks = [var.vpc_config.cidr]
   }
 
-  egress {
-    from_port   = 0
-    to_port     = 0 #65535
-    protocol    = -1 
-    description = ""
-    cidr_blocks = [var.vpc_config.open_cidr]
-  }
+  # egress {
+  #   from_port   = 0
+  #   to_port     = 0 #65535
+  #   protocol    = -1 
+  #   description = ""
+  #   cidr_blocks = [var.vpc_config.open_cidr]
+  # }
 }
 
 resource "aws_security_group_rule" "server"{
