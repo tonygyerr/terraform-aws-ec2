@@ -4,8 +4,8 @@ all: help
 
 export AWS_PROFILE := brag
 export ENV := dev
-export BACKEND_CONFIG := backend-config/${ENV}.tfvars
-export TFVARS := env-config/${ENV}.tfvars
+export BACKEND_CONFIG := ../backend-config/${ENV}.tfvars
+export TFVARS := ../env-config/${ENV}.tfvars
 export AWS_DEFAULT_REGION := us-east-1
 export S3_BUCKET := terraform-statelock-dev-bucket
 export DYNAMODB_TABLE := terraform-app-dev-statelock
