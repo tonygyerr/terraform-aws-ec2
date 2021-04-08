@@ -12,6 +12,6 @@ module "ec2" {
   tags                        = var.tags
   vpc                         = true
   vpc_config                  = var.vpc_config 
-  vpc_security_group_ids      = var.vpc_security_group_ids
+  # vpc_security_group_ids      = var.vpc_security_group_ids
 } 
 
