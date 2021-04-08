@@ -49,6 +49,13 @@ variable "public_subnet_ids" {
   default     = []
 }
 
+variable "vpc_security_group_ids" {
+  description = "list of security group ids"
+  type        = list
+  default     = []
+}
+
+
 variable "subnet_id" {
   type = string
 }

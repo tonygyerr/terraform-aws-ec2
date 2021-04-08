@@ -108,3 +108,9 @@ variable "vpc_config" {
   description = "configuration option for vpc"
   type        = map(string)
 }
+
+variable "vpc_security_group_ids" {
+  description = "list of security group ids"
+  type        = list
+  default     = []
+}
