@@ -2,7 +2,7 @@
 
 all: help
 
-export AWS_PROFILE := brag
+export AWS_PROFILE := default
 export ENV := dev
 export BACKEND_CONFIG := ../backend-config/${ENV}.tfvars
 export TFVARS := ../env-config/${ENV}.tfvars
