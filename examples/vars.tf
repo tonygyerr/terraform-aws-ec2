@@ -37,6 +37,11 @@ variable "iam_instance_profile_name" {
   default     = ""
 }
 
+variable "ssm_iam_instance_role" {
+  type        = string
+  default     = ""
+}
+
 variable "network_interface" {
   description = "Network interface ID to associate with"
   type        = string
@@ -44,6 +49,12 @@ variable "network_interface" {
 }
 
 variable "public_subnet_ids" {
+  description = "list of subnet ids"
+  type        = list
+  default     = []
+}
+
+variable "private_subnet_ids" {
   description = "list of subnet ids"
   type        = list
   default     = []

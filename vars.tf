@@ -20,7 +20,7 @@ variable "aws_region" {
 }
 
 variable "associate_public_ip_address" {
-  type    = bool
+  type = bool
 }
 
 variable "app_vol_size" {
@@ -38,8 +38,13 @@ variable "app_vol_encryption" {
 }
 
 variable "iam_instance_profile_name" {
-  type        = string
-  default     = ""
+  type    = string
+  default = ""
+}
+
+variable "ssm_iam_instance_role" {
+  type    = string
+  default = ""
 }
 
 variable "instance_count" {
@@ -54,7 +59,7 @@ variable "instance_type" {
 variable "public_ipv4_pool" {
   description = "EC2 IPv4 address pool identifier or amazon. This option is only available for VPC EIPs."
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "network_interface" {
@@ -70,6 +75,12 @@ variable "open_cidr" {
 }
 
 variable "public_subnet_ids" {
+  description = "list of subnet ids"
+  type        = list
+  default     = []
+}
+
+variable "private_subnet_ids" {
   description = "list of subnet ids"
   type        = list
   default     = []
@@ -101,7 +112,7 @@ variable "tags" {
 variable "vpc" {
   description = "Boolean if the EIP is in a VPC or not"
   type        = bool
-  default     = null
+  default     = true
 }
 
 variable "vpc_config" {

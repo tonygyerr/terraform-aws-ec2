@@ -7,7 +7,8 @@ module "ec2" {
   instance_count              = var.instance_count
   instance_type	              = var.instance_type
   network_interface           = var.network_interface
-  public_subnet_ids           = var.public_subnet_ids
+  # public_subnet_ids           = var.public_subnet_ids
+  private_subnet_ids          = var.private_subnet_ids
   subnet_id                   = var.subnet_id
   tags                        = var.tags
   vpc                         = true

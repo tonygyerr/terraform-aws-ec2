@@ -85,7 +85,7 @@ go_get(
     install = [
         "context",
         "http2",
-        "idna",
+        "iabc",
     ],
     test_only = True,
     deps = [

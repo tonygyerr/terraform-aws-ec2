@@ -1,14 +1,14 @@
 
 resource "aws_instance" "this" {
-  ami                     = var.ami
-  availability_zone       = var.vpc_config.region
-  instance_type             = var.instance_type
+  ami                    = var.ami
+  availability_zone      = var.vpc_config.region
+  instance_type          = var.instance_type
   key_name               = var.aws_key_name
-  iam_instance_profile   = var.iam_instance_profile_name
+  iam_instance_profile   = var.ssm_iam_instance_role
   vpc_security_group_ids = var.vpc_security_group_ids #aws_security_group.server.id
   subnet_id              = var.subnet_id
   source_dest_check      = false
-  tags = merge(map("Name", "${var.app_name}-ec2"), merge(var.tags))
+  tags                   = merge(map("Name", "${var.app_name}-ec2"), merge(var.tags))
 }
 
 resource "aws_ebs_volume" "this" {
@@ -16,7 +16,7 @@ resource "aws_ebs_volume" "this" {
   size              = var.app_vol_size
   type              = var.app_vol_type
   encrypted         = var.app_vol_encryption
-  
+
   tags = merge(map("Name", "${var.app_name}-vol"), merge(var.tags))
 }
 
