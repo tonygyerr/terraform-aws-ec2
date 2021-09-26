@@ -60,6 +60,18 @@ variable "private_subnet_ids" {
   default     = []
 }
 
+variable "private_subnets" {
+  description = "list of private subnets"
+  type        = list
+  default     = []
+}
+
+variable "public_subnets" {
+  description = "list of public subnets"
+  type        = list
+  default     = []
+}
+
 variable "vpc_security_group_ids" {
   description = "list of security group ids"
   type        = list

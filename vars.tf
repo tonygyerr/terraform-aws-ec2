@@ -86,6 +86,18 @@ variable "private_subnet_ids" {
   default     = []
 }
 
+variable "private_subnets" {
+  description = "list of private subnets"
+  type        = list
+  default     = []
+}
+
+variable "public_subnets" {
+  description = "list of public subnets"
+  type        = list
+  default     = []
+}
+
 variable "subnet_id" {
   type = string
 }
