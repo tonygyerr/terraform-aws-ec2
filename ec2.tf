@@ -4,7 +4,7 @@ resource "aws_instance" "this" {
   availability_zone      = var.vpc_config.region
   instance_type          = var.instance_type
   key_name               = var.aws_key_name
-  iam_instance_profile   = var.ssm_iam_instance_role
+  iam_instance_profile   = var.iam_instance_profile_name #var.ssm_iam_instance_role
   vpc_security_group_ids = var.vpc_security_group_ids #aws_security_group.server.id
   subnet_id              = var.subnet_id
   source_dest_check      = false
