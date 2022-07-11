@@ -1,7 +1,7 @@
 resource "aws_security_group" "server" {
   name        = "${var.app_name}-sg"
   description = "Application Security Group"
-  vpc_id      = var.vpc_config.vpc_id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port   = -1
