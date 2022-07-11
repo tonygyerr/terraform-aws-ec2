@@ -110,3 +110,8 @@ variable "profile" {
   description = "Enter name of profile"
   default     = ""
 }
+
+variable "userdata" {
+  type    = string
+  default = ""
+}
