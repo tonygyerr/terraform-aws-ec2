@@ -11,6 +11,7 @@ module "ec2" {
   # public_subnet_ids           = var.public_subnet_ids
   private_subnet_ids          = var.private_subnet_ids
   subnet_id                   = var.subnet_id
+  userdata                    = var.userdata
   tags                        = var.tags
   vpc                         = true
   vpc_config                  = var.vpc_config 
