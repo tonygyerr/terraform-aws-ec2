@@ -8,6 +8,7 @@ resource "aws_instance" "this" {
   vpc_security_group_ids = var.vpc_security_group_ids #aws_security_group.server.id
   subnet_id              = var.subnet_id
   source_dest_check      = false
+  user_data              = var.userdata
   tags                   = merge(map("Name", "${var.app_name}-ec2"), merge(var.tags))
 }
 
